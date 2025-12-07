@@ -1,32 +1,37 @@
+import { redirect } from "next/navigation";
+import { db } from "@/db";
+
 export default function SnippetCreatePage() {
+  async function createSnippet(formData: FormData) {
+    "use server";
+
+    const title = formData.get("title") as string;
+    const code = formData.get("code") as string;
+
+    await db.snippet.create({
+      data: { title, code },
+    });
+
+    redirect("/");
+  }
+
   return (
-    <form>
-      <h3 className="font-bold m-3">Create a New Snippet</h3>
+    <form action={createSnippet}>
       <div className="flex flex-col gap-4">
-        <div className="flex gap-4">
-          <label htmlFor="title" className="w-12">
-            Title:
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            className="border rounded px-2 w-full"
-          />
+        <h3 className="font-bold">Create a Snippet</h3>
+
+        <div className="flex flex-col gap-1">
+          <label className="font-semibold">Title</label>
+          <input name="title" className="border rounded px-2 py-1 w-full" />
         </div>
-        <div className="flex gap-4">
-          <label htmlFor="code" className="w-12">
-            code:
-          </label>
-          <input
-            type="text"
-            id="code"
-            name="code"
-            className="border rounded px-2 w-full"
-          />
+
+        <div className="flex flex-col gap-1">
+          <label className="font-semibold">Code</label>
+          <textarea name="code" className="border rounded px-2 py-1 w-full" />
         </div>
+
         <button
-          type="button"
+          type="submit"
           className="font-bold rounded p-2 bg-blue-200 cursor-pointer"
         >
           Create
