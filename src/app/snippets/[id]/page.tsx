@@ -2,11 +2,10 @@ import { db } from "@/db";
 import { notFound } from "next/navigation";
 
 interface SnippetProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
-
 export default async function SnippetShowPage(props: SnippetProps) {
   const { id } = await props.params;
 
