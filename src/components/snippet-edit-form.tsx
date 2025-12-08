@@ -30,9 +30,9 @@ export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
       <form action={editSnippetAction}>
         <button
           type="submit"
-          className="pt-4 border rounded bg-blue-200 cursor-pointer"
+          className="p-2 border rounded bg-blue-200 cursor-pointer"
         >
-          Save
+          save
         </button>
       </form>
     </div>
