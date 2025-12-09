@@ -21,7 +21,7 @@ export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
   return (
     <div>
       <Ediror
-        height="40vh"
+        height="60vh"
         defaultLanguage="javascript"
         defaultValue={snippet.code}
         options={{ minimap: { enabled: false } }}
